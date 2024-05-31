@@ -12,7 +12,7 @@ It creates the following resources in one or more preexisting identity domains:
 
 
 ## Using this example
-1. Rename *input.auto.tfvars.template* to *\<project-name\>.auto.tfvars*, where *\<project-name\>* is any name of your choice. 
+1. Rename *input.auto.tfvars.template* to *\<project-name\>.auto.tfvars*, where *\<project-name\>* is any name of your choice.
 
 **NOTE**: Each object in the *Groups* and *Dynamic Groups* map is indexed by an uppercase string, like *GRP1*, *GRP2*, *SEC-FUN-DYN-GROUP*, etc. These strings are used by Terraform as keys to the actual managed resources. They can actually be any random strings, but once defined they **must not be changed**, or Terraform will try to destroy and recreate the groups.
 

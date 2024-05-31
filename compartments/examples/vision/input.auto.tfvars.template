@@ -4,7 +4,7 @@
 #---------------------------------------------------------------------------------------------------------------------
 # 1. Rename this file to <project-name>.auto.tfvars, where <project-name> is a name of your choice.
 # 2. Provide values for "Tenancy Connectivity Variables".
-# 3. Replace <REPLACE-BY-THE-PARENT-COMPARTMENT-OCID> placeholder by a compartment OCID. 
+# 3. Replace <REPLACE-BY-THE-PARENT-COMPARTMENT-OCID> placeholder by a compartment OCID.
 #    This determines the compartment that TOP-CMP compartment gets attached to.
 #    For referring to the tenancy_ocid, use the reserved key "TENANCY-ROOT".
 # 4. Replace <REPLACE-BY-THE-COST-CENTER-TAG-OCID> placeholder in TOP-CMP with the actual cost center tag ocid.
@@ -33,48 +33,48 @@ compartments_configuration = {
   #default_defined_tags = null
   #default_freeform_tags = null
   #enable_delete = false
-  compartments = { 
-    TOP-CMP = { 
-      name = "vision-top-cmp", 
-      description = "Vision Enclosing compartment", 
+  compartments = {
+    TOP-CMP = {
+      name = "vision-top-cmp",
+      description = "Vision Enclosing compartment",
       #parent_id = null,
       tag_defaults = {
         COST-CENTER-TAG-DEFAULT = {
           tag_id = "<REPLACE-BY-THE-COST-CENTER-TAG-OCID>"
           default_value = "a1",
-          is_user_required = false 
+          is_user_required = false
         }
         ENVIRONMENT-TAG-DEFAULT = {
           tag_id = "<REPLACE-BY-THE-ENVIRONMENT-TAG-OCID>"
           default_value = "low",
-          is_user_required = true 
-        }   
+          is_user_required = true
+        }
       }
       children = {
-        NETWORK-CMP = { 
-          name = "vision-network-cmp", 
-          description = "Vision Network compartment", 
+        NETWORK-CMP = {
+          name = "vision-network-cmp",
+          description = "Vision Network compartment",
         },
-        SECURITY-CMP = { 
-          name = "vision-security-cmp", 
-          description = "Vision Security compartment", 
+        SECURITY-CMP = {
+          name = "vision-security-cmp",
+          description = "Vision Security compartment",
         },
-        APP-CMP = { 
-          name = "vision-application-cmp", 
-          description = "Vision Application compartment", 
+        APP-CMP = {
+          name = "vision-application-cmp",
+          description = "Vision Application compartment",
         },
-        DB-CMP = { 
-          name = "vision-database-cmp", 
-          description = "Vision Database compartment", 
+        DB-CMP = {
+          name = "vision-database-cmp",
+          description = "Vision Database compartment",
         },
-        EXACS-CMP = { 
-          name = "vision-exainfra-cmp", 
-          description = "Vision Exadata Cloud Service compartment",  
-        } 
+        EXACS-CMP = {
+          name = "vision-exainfra-cmp",
+          description = "Vision Exadata Cloud Service compartment",
+        }
       }
     }
   }
-}  
+}
 
 # automation_config = {
 #  bucket_name      : "<REPLACE-BY-THE-BUCKET-NAME>"

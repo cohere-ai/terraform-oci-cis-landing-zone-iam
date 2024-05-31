@@ -30,7 +30,7 @@
 
 # November 01, 2023 Release Notes - 0.1.7
 ## New
-1. Identity Domains module, supporting identity domains, groups, and dynamic groups. 
+1. Identity Domains module, supporting identity domains, groups, and dynamic groups.
 2. Groups and dynamic groups can be created in existing identity domains.
 
 ## Updates

@@ -8,7 +8,7 @@
 
  Check [module specification](./SPEC.md) for a full description of module requirements, supported variables, managed resources and outputs.
 
- Check the [examples](./examples/) folder for actual module usage. 
+ Check the [examples](./examples/) folder for actual module usage.
 
 - [Requirements](#requirements)
 - [How to Invoke the Module](#invoke)
@@ -51,7 +51,7 @@ experiments = [module_variable_optional_attrs]
 ```
 ## <a name="invoke">How to Invoke the Module</a>
 
-Terraform modules can be invoked locally or remotely. 
+Terraform modules can be invoked locally or remotely.
 
 For invoking the module locally, just set the module *source* attribute to the module file path (relative path works). The following example assumes the module is two folders up in the file system.
 ```
@@ -77,7 +77,7 @@ For referring to a specific module version, append *ref=\<version\>* to the *sou
 ```
 ## <a name="functioning">Module Functioning</a>
 
- The module operates in two non-exclusive modes: 
+ The module operates in two non-exclusive modes:
  - [**Supplied policies**](#supplied-policies): a map of policies is explicitly supplied to the module.
  - [**Template policies**](#template-policies): At the tenancy level (Root compartment), for group principals, policies are driven off supplied roles assigned to groups that must be passed to the module. For OCI service principals, policies can be enabled for all services or to specific ones. At the compartment level (excluding the Root compartment), policies are driven off metadata that must passed to the module.
 
@@ -94,7 +94,7 @@ Check the [Supplied Policies example](./examples/supplied-policies/) for how to 
  ### <a name="template-policies">2) Template Policies</a>
 
  In this mode, policies are pre-configured, automatically providing Separation of Duties across a set of pre-defined group roles. Template policies are specified with *template_policies* attribute. The module distinguishes between tenancy level and compartment level policies. Tenancy level policies are specified via *tenancy_level_settings* attribute, while compartment level policies are specified via *compartment_level_settings*.
- 
+
  #### <a name="template-policies-tenancy-level">2.1) Tenancy Level Policies</a>
 
 Tenancy level policies (policies attached to Root compartment) for groups principals are generated based on *groups_with_tenancy_level_roles* attribute within *tenancy_level_settings* attribute.
@@ -130,7 +130,7 @@ At the tenancy level, two policies are generated, named as:
 - *policy_name_prefix*root-admin*policy_name_suffix*: for all groups with manage/use permissions over at least one resource
 - *policy_name_prefix*root-non-admin*policy_name_suffix*: for groups with only read/inspect and basic role permissions.
 
-You can tweak policy names by changing *policy_name_prefix* and *policy_name_suffix* atributes. Default values are: 
+You can tweak policy names by changing *policy_name_prefix* and *policy_name_suffix* atributes. Default values are:
 - *policy_name_prefix* : ""
 - *policy_name_suffix* : "-policy"
 
@@ -216,8 +216,8 @@ A fully functional example is provided in [Template policies example](./examples
 
  #### <a name="template-policies-cmp-level">2.2) Compartment Level Policies</a>
 
-At the compartment level, compartment metadata attributes drive policy creation. These metadata define the compartment types and consumer groups. 
- 
+At the compartment level, compartment metadata attributes drive policy creation. These metadata define the compartment types and consumer groups.
+
  The compartments to which policies are applied must be provided to the module using *supplied_compartments* attribute within *compartment_level_settings* attribute. *supplied_compartments* is a map of objects, where each object is composed of the following attributes:
  - **name** : the compartment name, determining the target compartment in each policy statement.
  - **id** : the compartment where the policy is attached to. This attribute is overloaded, i.e., it can be either a literal compartment OCID, or a reference (a key) to an OCID. See [External Dependencies](#ext-dep) for more information.
@@ -239,7 +239,7 @@ The module supports the following metadata attributes (*cislz_metadata*):
 
 ##### cislz-cmp-type Attribute
 
-Defines the compartment's intent, in other words, it communicates the OCI resource types the compartment is intended to hold. For instance, a compartment can be created with the objective of holding network resources, or security resources, or both. 
+Defines the compartment's intent, in other words, it communicates the OCI resource types the compartment is intended to hold. For instance, a compartment can be created with the objective of holding network resources, or security resources, or both.
 
 Currently supported values:
 
@@ -256,7 +256,7 @@ Currently supported values:
 
 The *cislz-consumer-groups-\<suffix\>* metadata attributes define the groups that use (or consume) resources from the compartment, denoting the groups' interest in the resources. For instance, a tag *cislz-consumer-groups-database: database-admin-group* indicates *database-admin-group* consumes resources in the compartment from a *database* admin perspective. This results in policy statements granting specific *database* related permissions to the group in the compartment.
 
-**Note**: The *cislz-consumer-groups-\<suffix\>* metadata attributes support a comma-separated string of values, which allows for communicating the interest of multiple groups in a single compartment. This is important in scenarios where a compartment provides shared services, must be managed by different administrators and is used (consumed) by roles with other responsibilities. 
+**Note**: The *cislz-consumer-groups-\<suffix\>* metadata attributes support a comma-separated string of values, which allows for communicating the interest of multiple groups in a single compartment. This is important in scenarios where a compartment provides shared services, must be managed by different administrators and is used (consumed) by roles with other responsibilities.
 
 Picture the use case where a single compartment provide network and security services. It might be the case it requires distinct administrators for network and security resources. Moreover, distinct database administrators (Dev admin and Prod admin) may need access to those resources. In this scenario, the compartment metadata would be like:
 ```
@@ -268,8 +268,8 @@ cislz-consumer-groups-database: "dev-database-admin", "prod-database-admin"
 
 These are the currently supported metadata attributes for consumer groups:
 
-- **cislz-consumer-groups-read**: defines the groups that can only read from the compartment. 
-- **cislz-consumer-groups-iam**: defines the groups that manage or consume compartment resources from an *IAM* admin perspective. 
+- **cislz-consumer-groups-read**: defines the groups that can only read from the compartment.
+- **cislz-consumer-groups-iam**: defines the groups that manage or consume compartment resources from an *IAM* admin perspective.
 - **cislz-consumer-groups-security**: defines the groups that manage or consume compartment resources from a *security* admin perspective.
 - **cislz-consumer-groups-network**: defines the groups that manage or consume compartment resources from a *network* admin perspective.
 - **cislz-consumer-groups-application**: defines the groups that manage or consume compartment resources from an *application* admin perspective.
@@ -297,13 +297,13 @@ The actual applied policies are the combined result of *cislz-cmp-type* and *cis
 
 At the compartments level, policies are generated for each selected compartment. As such they are named after compartment names, following the pattern *policy_name_prefix*\<compartment_name\>*policy_name_suffix*.
 
-You can tweak policy names by changing *policy_name_prefix* and *policy_name_suffix* atributes. Default values are: 
+You can tweak policy names by changing *policy_name_prefix* and *policy_name_suffix* atributes. Default values are:
 - *policy_name_prefix* : ""
 - *policy_name_suffix* : "-policy"
 
 ##### Policy Attachment
 
-The *id* attribute within *supplied_compartments* attribute defines the compartment to which the policy is attached. 
+The *id* attribute within *supplied_compartments* attribute defines the compartment to which the policy is attached.
 
 ##### Putting it Together - An Example
 
@@ -311,7 +311,7 @@ As an example, assume the following metadata is associated with the *vision-netw
 
 - *cislz-cmp-type: "network"*: the value communicates this compartment is about *network* resource types, hence network policy statements should be pulled from the template.
 - *cislz-consumer-groups-network: "vision-network-admin-group"*: the value communicates the group name that effectively manages compartment resources, because the tag name *\<suffix\>* matches *cislz-cmp-type* value, per table above.
-- *cislz-consumer-groups-security: "vision-security-admin-group"*: the value communicates the group name that consumes compartment resources from a *security* admin perspective.  
+- *cislz-consumer-groups-security: "vision-security-admin-group"*: the value communicates the group name that consumes compartment resources from a *security* admin perspective.
 - *cislz-consumer-groups-application: "vision-app-admin-group"*: the value communicates the group name that consumes compartment resources from an *application* admin perspective.
 - *cislz-consumer-groups-database: "vision-database-admin-group"*: the value communicates the group name that consumes compartment resources from a *database* admin perspective.
 - *cislz-consumer-groups-storage: "vision-storage-admin-group"*: the value communicates the group name that consumes compartment resources from a *storage* admin perspective.

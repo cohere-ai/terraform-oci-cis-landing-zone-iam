@@ -3,10 +3,10 @@
 
 output "groups" {
   description = "The groups."
-  value = oci_identity_group.these
+  value       = oci_identity_group.these
 }
 
 output "memberships" {
   description = "The group memberships."
-  value = oci_identity_user_group_membership.these
+  value       = oci_identity_user_group_membership.these
 }

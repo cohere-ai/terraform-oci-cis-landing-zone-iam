@@ -23,13 +23,13 @@ region               = "<your tenancy home region>" # This is your tenancy home 
 # Input variable
 #---------------------------------------
 
-compartments_configuration = { 
+compartments_configuration = {
   default_parent_id = "<REPLACE-BY-COMPARTMENT-REFERENCE>" # For referring to the tenancy_ocid, use the reserved key "TENANCY-ROOT".
   enable_delete = false
   compartments = {
-    WORKLOAD-1-CMP = { 
+    WORKLOAD-1-CMP = {
       name = "workload-1-cmp"
-      description = "Workload 1 compartment" 
+      description = "Workload 1 compartment"
       tag_defaults = {
         COST-CENTER-TAG-DEFAULT = {
           tag_id = "<REPLACE-BY-TAG-REFERENCE>"
@@ -51,13 +51,13 @@ oci_tags_dependency = "<REPLACE-BY-OBJECT-NAME-FOR-TAGS>"
 ### A real example
 ###--------------------------------------------------------------
 /*
-compartments_configuration = { 
+compartments_configuration = {
   default_parent_id = "APP-CMP"
   enable_delete = false
   compartments = {
-    WORKLOAD-1-CMP = { 
+    WORKLOAD-1-CMP = {
       name = "workload-1-cmp"
-      description = "Workload 1 compartment" 
+      description = "Workload 1 compartment"
       tag_defaults = {
         COST-CENTER-TAG-DEFAULT = {
           tag_id = "COST-CENTER-TAG"

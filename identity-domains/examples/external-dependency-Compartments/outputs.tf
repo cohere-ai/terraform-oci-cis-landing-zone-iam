@@ -5,5 +5,3 @@ output "identity-domains" {
   description = "The identity domains."
   value       = module.vision_identity_domains.identity_domains
 }
-
-

@@ -5,9 +5,9 @@
 # 1. Rename this file to <project-name>.auto.tfvars, where <project-name> is any name of your choice.
 # 2. Provide values for "Tenancy Connectivity Variables".
 # 3. Replace <REPLACE-BY-DOMAIN-OCID> placeholder by the identity domain OCID.
-# Each object in the *identity_domains* map is indexed by an uppercase string, like IDP1, IDP2, etc. 
-# These strings are used by Terraform as keys to the actual managed resources. 
-# They can actually be any random strings, but once defined they MUST NOT BE CHANGED, 
+# Each object in the *identity_domains* map is indexed by an uppercase string, like IDP1, IDP2, etc.
+# These strings are used by Terraform as keys to the actual managed resources.
+# They can actually be any random strings, but once defined they MUST NOT BE CHANGED,
 # or Terraform will try to destroy and recreate the identity domains.
 #---------------------------------------------------------------------------------------------------------------------
 
@@ -29,30 +29,30 @@ region               = "<your tenancy home region>" # This is your tenancy home 
 identity_domain_identity_providers_configuration = {
   default_identity_domain_id = "<REPLACE-BY-DOMAIN-OCID>"
 
-  identity_providers = {  
+  identity_providers = {
     IDP1 = {   # IDP configuration using SAML metadata file
-      name              = "ID_Provider_1",  
-      description       = "Identity Provider 1",      
+      name              = "ID_Provider_1",
+      description       = "Identity Provider 1",
       enabled           = false,
-      idp_metadata_file = "MetadataIDP1.xml", # Obtain this file from the IDP Configuration 
+      idp_metadata_file = "MetadataIDP1.xml", # Obtain this file from the IDP Configuration
       # The following three entries are defaulted by the module, shown here for awareness.
       # name_id_format               = "saml-emailaddress",
       # user_mapping_method          = "NameIDToUserAttribute",
-      # user_mapping_store_attribute = "username"  
+      # user_mapping_store_attribute = "username"
     }
     IDP2 = {  # IDP configuration using parameters instead of SAML metadata file.
       identity_domain_id      = "<REPLACE-BY-DOMAIN-OCID>"
-      name                    = "ID_Provider_2", 
+      name                    = "ID_Provider_2",
       description             = "Identity Provider 2",
       enabled                 = false,
       idp_issuer_uri		      = "<REPLACE-BY-IDP-ENTITY-ID>",
-      sso_service_url         = "<REPLACE-BY-IDP-SSO-URL>",  
+      sso_service_url         = "<REPLACE-BY-IDP-SSO-URL>",
       sso_service_binding     = "<REPLACE-BY-IDP-SERVICE-BINDING>", # Post or Redirect
       idp_signing_certificate = "<REPLACE-BY-IDP-SIGNING-CERTIFICATE>", # Actual file contents Without the BEGIN CERTIFICATE and END CERTIFICATE lines
       enable_global_logout    = true,
       idp_logout_request_url  = "<REPLACE-BY-IDP-LOGOUT-REQUEST-URL>",
       idp_logout_response_url = "<REPLACE-BY-IDP-LOGOUT-RESPONSE-URL>",
-      idp_logout_binding 			= "<REPLACE-BY-IDP-LOGOUT-BINDING>", # Post or Redirect  
+      idp_logout_binding 			= "<REPLACE-BY-IDP-LOGOUT-BINDING>", # Post or Redirect
     }
   }
 }
@@ -64,21 +64,21 @@ identity_domain_identity_providers_configuration = {
 # identity_domain_identity_providers_configuration = {
 #  default_identity_domain_id  : "ocid1.domain.oc1..aaaaaa...hxa"
 
-#  identity_providers = {  
-#    ENTRA = {   
-#      name              = "Microsoft Entra (Former Azure AD)",  
-#      description       = "Managed by Identity Domain Terraform module.",      
+#  identity_providers = {
+#    ENTRA = {
+#      name              = "Microsoft Entra (Former Azure AD)",
+#      description       = "Managed by Identity Domain Terraform module.",
 #      enabled           = true,
-#      idp_metadata_file = "entra-saml-metadata.xml"  
+#      idp_metadata_file = "entra-saml-metadata.xml"
 #    }
-#    OKTA = {   
-#      name              = "Okta dev-AABBCC", 
-#      description       = "Managed by Identity Domain Terraform module.",     
+#    OKTA = {
+#      name              = "Okta dev-AABBCC",
+#      description       = "Managed by Identity Domain Terraform module.",
 #      enabled           = true,
 #      idp_metadata_file = "okta-saml-metadata.xml",
 #    },
 #    OKTA-2 = {
-#      name                    = "Okta dev-AABBCC 2", 
+#      name                    = "Okta dev-AABBCC 2",
 #      description             = "Managed by Identity Domain Terraform module. Parameters manually provided.",
 #      enabled                 = true,
 #      idp_issuer_uri		       = "http://www.okta.com/exk9999999999999358", # Value obtained from Okta

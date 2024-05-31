@@ -2,7 +2,7 @@
 
 ![Landing Zone logo](../landing_zone_300.png)
 
-This module manages arbitrary Identity and Access Management (IAM) compartment topologies in Oracle Cloud Infrastructure (OCI) based on a map of objects that can be nested up to six levels. Appropriate compartments usage is a key consideration for OCI tenancy design and it is a recommendation of CIS (Center for Internet Security) OCI Foundations Benchmark. 
+This module manages arbitrary Identity and Access Management (IAM) compartment topologies in Oracle Cloud Infrastructure (OCI) based on a map of objects that can be nested up to six levels. Appropriate compartments usage is a key consideration for OCI tenancy design and it is a recommendation of CIS (Center for Internet Security) OCI Foundations Benchmark.
 
 Check [module specification](./SPEC.md) for a full description of module requirements, supported variables, managed resources and outputs.
 
@@ -18,41 +18,41 @@ A fundamental principle in using a map of objects is the ability to quickly visu
   - **defined_tags** &ndash; (Optional) The compartment defined_tags. *default_defined_tags* is used if undefined.
   - **freeform_tags** &ndash; (Optional) The compartment freeform_tags. *default_freeform_tags* is used if undefined.
   - **tag_defaults** &ndash; (Optional) A map of tag defaults to apply to the compartment. Every resource created in the compartment is tagged per this setting.
-    - **tag_id** &ndash; The tag default tag id. This attribute is overloaded: it can be either a tag OCID or a reference (a key) to the tag OCID. 
+    - **tag_id** &ndash; The tag default tag id. This attribute is overloaded: it can be either a tag OCID or a reference (a key) to the tag OCID.
     - **default_value** &ndash; The default value to assign to the tag.
     - **is_user_required** &ndash; (Optional) Whether the user must provide a tag value for resources created in the compartment.
-  - **children**:  &ndash; (Optional) The map of sub-compartments. It has the same structure of the *compartments* map, except for the *parent_id* attribute.  
+  - **children**:  &ndash; (Optional) The map of sub-compartments. It has the same structure of the *compartments* map, except for the *parent_id* attribute.
 
 Note it is possible to apply tag defaults to compartments. Tag defaults are tag values that are automatically applied or required from users on any resources eventually created in the compartments and in their sub-compartments. Use tag defaults to enforce organization wide governance practices in your cloud infrastructure, like automatically applying the cost center identifier to specific compartments. Before using a tag default, a defined tag must be defined in OCI. For configuring tags, you can use the [Tags module in CIS OCI Landing Zone Governance repository](https://github.com/oracle-quickstart/terraform-oci-cis-landing-zone-governance/tags/).
 
-Tag defaults are defined using *tag_defaults* attribute within each compartment in *compartments* attribute. You can have multiple tag defaults in a single compartment. Each tag default requires an immutable key (use an uppercase string as a convention), a tag id (*tag_id*), the default value (*default_value*) and whether or not the value is required from users when creating resources (*is_user_required*). If *is_user_required* is not provided or set to false, the default value is automatically applied upon resource creation.  
+Tag defaults are defined using *tag_defaults* attribute within each compartment in *compartments* attribute. You can have multiple tag defaults in a single compartment. Each tag default requires an immutable key (use an uppercase string as a convention), a tag id (*tag_id*), the default value (*default_value*) and whether or not the value is required from users when creating resources (*is_user_required*). If *is_user_required* is not provided or set to false, the default value is automatically applied upon resource creation.
 
 ## Identifying Keys
 
 Each compartment is identified by Terraform with an artificial key provided in the input variable. For example, in the snippet below, *DATABASE* (rows 4-13) identifies the *database-cmp* compartment, while *PROD* (rows 8-11) identifies its child *database-production-cmp* compartment.
 ```
-1  compartments_configuration = { 
+1  compartments_configuration = {
 2    default_parent_id = "<COMPARTMENT-OCID>"
 3    compartments = {
-4      DATABASE = { 
-5        name = "database-cmp" 
+4      DATABASE = {
+5        name = "database-cmp"
 6        description = "Database compartment"
 7        children = {
 8          PROD = {
 9            name = "database-production-cmp"
 10           description = "Database production compartment"
 11         }
-12       }      
+12       }
 13     }
 14   }
-15 }    
+15 }
 ```
 
 These identifying keys are used in Terraform state file as resource addresses. By default, the keys are written "as-is" to the state file. As such, they must be unique across all compartment definitions. However, when defining complex hierarchies where distinct compartment subtrees has similar characteristics, it is desirable to use the same identifying key across the subtrees, as in when both *DATABASE* and *APPLICATION* compartments have PROD compartments. In use cases like this, set the variable **derive_keys_from_hierarchy** to true and the *PROD* compartments will be identified as *DATABASE-PROD* and *APPLICATION-PROD*. It works at all levels in the hierarchy, i.e., if *DATABASE*'s *PROD* had a child defined as *HR* in the variable declaration, the *HR* compartment would be identified as *DATABASE-PROD-HR* in Terraform state file.
 
 **derive_keys_from_hierarchy**: whether identifying keys should be derived from the provided compartments hierarchy. It allows for using the same identifying key in different compartment subtrees, thus removing the requirement of unique keys. Default is false.
 
-Check the [examples](./examples) folder for module usage with actual input data. 
+Check the [examples](./examples) folder for module usage with actual input data.
 
 ## External Dependencies
 
@@ -125,7 +125,7 @@ experiments = [module_variable_optional_attrs]
 ```
 ## How to Invoke the Module
 
-Terraform modules can be invoked locally or remotely. 
+Terraform modules can be invoked locally or remotely.
 
 For invoking the module locally, just set the module *source* attribute to the module file path (relative path works). The following example assumes the module is two folders up in the file system.
 ```

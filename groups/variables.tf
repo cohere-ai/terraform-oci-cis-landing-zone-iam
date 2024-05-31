@@ -2,7 +2,7 @@
 # Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl.
 
 variable "tenancy_ocid" {
-  type = string
+  type        = string
   description = "The OCID of the tenancy."
 }
 
@@ -22,8 +22,8 @@ variable "groups_configuration" {
   default = null
 }
 
-variable module_name {
+variable "module_name" {
   description = "The module name."
-  type = string
-  default = "iam-groups"
+  type        = string
+  default     = "iam-groups"
 }

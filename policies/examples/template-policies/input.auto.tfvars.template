@@ -6,7 +6,7 @@
 # 2. Provide values for "Tenancy Connectivity Variables".
 #
 # This example depends on compartments properly tagged with required metadata for CIS Landing Zone policies.
-# A matching coompartments example is available at 
+# A matching coompartments example is available at
 # https://github.com/oracle-quickstart/terraform-oci-cis-landing-zone-iam-modules/compartments/examples/vision
 #-------------------------------------------------------------------------------------------------------------------------------------
 

@@ -2,7 +2,7 @@
 
 ![Landing Zone logo](../landing_zone_300.png)
 
-This module manages Identity and Access Management (IAM) groups of user principals in Oracle Cloud Infrastructure (OCI) based on a single map of objects. Groups are a fundamental construct in OCI IAM, acting as beneficiaries of IAM policies. 
+This module manages Identity and Access Management (IAM) groups of user principals in Oracle Cloud Infrastructure (OCI) based on a single map of objects. Groups are a fundamental construct in OCI IAM, acting as beneficiaries of IAM policies.
 
 CIS (Center for Internet Security) OCI Foundations Benchmark recommends the usage of service level admins to manage resources of a particular service. These admins can be local or federated groups. This modules manages local groups.
 
@@ -46,7 +46,7 @@ experiments = [module_variable_optional_attrs]
 ```
 ## How to Invoke the Module
 
-Terraform modules can be invoked locally or remotely. 
+Terraform modules can be invoked locally or remotely.
 
 For invoking the module locally, just set the module *source* attribute to the module file path (relative path works). The following example assumes the module is two folders up in the file system.
 ```

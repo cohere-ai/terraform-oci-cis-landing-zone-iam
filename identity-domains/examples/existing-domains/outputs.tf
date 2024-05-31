@@ -12,4 +12,3 @@ output "identity-domain-dynamic-groups" {
   description = "The identity domain groups."
   value       = module.vision_identity_domains.identity_domain_dynamic_groups
 }
-

@@ -43,7 +43,7 @@ experiments = [module_variable_optional_attrs]
 ```
 ## How to Invoke the Module
 
-Terraform modules can be invoked locally or remotely. 
+Terraform modules can be invoked locally or remotely.
 
 For invoking the module locally, just set the module *source* attribute to the module file path (relative path works). The following example assumes the module is two folders up in the file system.
 ```

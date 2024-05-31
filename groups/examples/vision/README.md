@@ -8,7 +8,7 @@ It creates the following groups as shown in the picture below:
 ![Groups](./images/groups.PNG)
 
 ## Using this example
-1. Rename *input.auto.tfvars.template* to *\<project-name\>.auto.tfvars*, where *\<project-name\>* is any name of your choice. 
+1. Rename *input.auto.tfvars.template* to *\<project-name\>.auto.tfvars*, where *\<project-name\>* is any name of your choice.
 
 **NOTE**: Each object in the *groups* map is indexed by an uppercase string, like *IAM-ADMIN-GROUP*, *CRED-ADMIN-GROUP*, etc. These strings are used by Terraform as keys to the actual managed resources. They can actually be any random strings, but once defined they **must not be changed**, or Terraform will try to destroy and recreate the groups.
 

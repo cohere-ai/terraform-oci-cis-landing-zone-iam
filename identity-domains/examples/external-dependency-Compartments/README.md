@@ -7,14 +7,14 @@ It creates the following resources:
 
 *Identity Domains*: "VISION_DEV_Identity_Domain" and "VISION_PROD_Identity_Domain".  Each in a different compartment.  The compartments are preexisting and they are referenced from a file or variable like:
 
-                                    { 
+                                    {
                                         DEV-COMPARTMENT = {
                                             id = "COMPARTMENT-OCID"
-                                        },                                      
+                                        },
                                         PROD-COMPARTMENT = {
                                             id = "COMPARTMENT-OCID"
                                         }
-                                    }       
+                                    }
 
 *Groups*:  "Dev Group 1" and "Prod Group 1".  One on each identity domain.
 
@@ -22,7 +22,7 @@ It creates the following resources:
 
 
 ## Using this example
-1. Rename *input.auto.tfvars.template* to *\<project-name\>.auto.tfvars*, where *\<project-name\>* is any name of your choice. 
+1. Rename *input.auto.tfvars.template* to *\<project-name\>.auto.tfvars*, where *\<project-name\>* is any name of your choice.
 
 **NOTE**: Each object in the *Identity Domains*, *Groups* and *Dynamic Groups* map is indexed by an uppercase string, like *DEV-DOMAIN*, *DEV-COMPARTMENT*, *GRP1*, *SEC-FUN-DYN-GROUP*, etc. These strings are used by Terraform as keys to the actual managed resources. They can actually be any random strings, but once defined they **must not be changed**, or Terraform will try to destroy and recreate the groups.
 

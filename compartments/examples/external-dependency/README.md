@@ -1,6 +1,6 @@
 # CIS OCI IAM Compartments Module Example - External Dependencies
 
-This example shows how to deploy Identity and Access Management (IAM) compartments in Oracle Cloud Infrastructure (OCI) with external dependencies. 
+This example shows how to deploy Identity and Access Management (IAM) compartments in Oracle Cloud Infrastructure (OCI) with external dependencies.
 
 It creates one compartment within the compartment referred by "\<REPLACE-BY-COMPARTMENT-REFERENCE\>" and applies a default value for the tag referred by "\<REPLACE-BY-TAG-REFERENCE\>". See [input.auto.tfvars.template](./input.auto.tfvars.template).
 
@@ -33,14 +33,14 @@ The OCI Object Storage objects with external dependencies are expected to have s
   "COST-CENTER-TAG" : {
    "id" : "ocid1.tag.oc1.iad.aaaaaaaax...e7a"
   }
-} 
+}
 ```
 
 ## Using this example
 1. Rename *input.auto.tfvars.template* to *\<project-name\>.auto.tfvars*, where *\<project-name\>* is any name of your choice.
 
 2. Within *\<project-name\>.auto.tfvars*, provide tenancy connectivity information and adjust the input variables, by making the appropriate substitutions:
-   - Replace *\<REPLACE-BY-\*\>* placeholders with appropriate values. 
+   - Replace *\<REPLACE-BY-\*\>* placeholders with appropriate values.
 
 Refer to [compartment's module README.md](../../README.md) for overall attributes usage.
 
